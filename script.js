@@ -54,15 +54,15 @@ const quizData = [
 let current = 0;
 let score = 0;
 
-let logoEl = document.getElementById("logo");
-let optionsEl = document.getElementById("options");
+let logo = document.getElementById("logo");
+let options = document.getElementById("options");
 let nextBtn = document.getElementById("next-btn");
-let progressEl = document.getElementById("progress");
+let progress = document.getElementById("progress");
 
 function loadQuestion() {
     const q = quizData[current];
-    logoEl.src = q.img;
-    optionsEl.innerHTML = "";
+    logo.src = q.img;
+    options.innerHTML = "";
     nextBtn.style.display = "none";
 
     q.options.forEach((opt, index) => {
@@ -70,10 +70,10 @@ function loadQuestion() {
         btn.textContent = opt;
         btn.classList.add("option");
         btn.addEventListener("click", () => selectOption(index, btn));
-        optionsEl.appendChild(btn);
+        options.appendChild(btn);
     });
 
-    progressEl.style.width = `${(current / quizData.length) * 100}%`;
+    progress.style.width = `${(current / quizData.length) * 100}%`;
 }
 
 function selectOption(index, btn) {
@@ -104,6 +104,7 @@ nextBtn.addEventListener("click", () => {
 function showScore() {
     document.querySelector(".quiz-container").innerHTML = `
         <div class="score">Your Score: ${score} / ${quizData.length}</div>
+        <p>you really thought you will score 10/10 😂😹🤣 mtlb kuch bhi</p>
         <button id="restart-btn" class="next-btn" style="display:block; margin:20px auto;">
             Play Again
         </button>
@@ -130,10 +131,10 @@ function restartQuiz() {
     `;
 
     // reconnect DOM elements
-    logoEl = document.getElementById("logo");
-    optionsEl = document.getElementById("options");
+    logo = document.getElementById("logo");
+    options = document.getElementById("options");
     nextBtn = document.getElementById("next-btn");
-    progressEl = document.getElementById("progress");
+    progress = document.getElementById("progress");
 
     nextBtn.addEventListener("click", () => {
         current++;
